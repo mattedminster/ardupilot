@@ -22,7 +22,7 @@
 
 #define FLIP_THR_INC        0.20f   // throttle increase during FlipState::Start stage (under 45deg lean angle)
 #define FLIP_THR_DEC        0.24f   // throttle decrease during FlipState::Roll stage (between 45deg ~ -90deg roll)
-#define FLIP_ROTATION_RATE  40000   // rotation rate request in centi-degrees / sec (i.e. 400 deg/sec)
+#define FLIP_ROTATION_RATE  60000   // rotation rate request in centi-degrees / sec (i.e. 400 deg/sec)
 #define FLIP_TIMEOUT_MS     2500    // timeout after 2.5sec.  Vehicle will switch back to original flight mode
 #define FLIP_RECOVERY_ANGLE 500     // consider successful recovery when roll is back within 5 degrees of original
 
@@ -35,10 +35,10 @@
 // flip_init - initialise flip controller
 bool ModeFlip::init(bool ignore_checks)
 {
-    // only allow flip from some flight modes, for example ACRO, Stabilize, AltHold or FlowHold flight modes
-    if (!copter.flightmode->allows_flip()) {
-        return false;
-    }
+    // // only allow flip from some flight modes, for example ACRO, Stabilize, AltHold or FlowHold flight modes
+    // if (!copter.flightmode->allows_flip()) {
+    //     return false;
+    // }
 
     // if in acro or stabilize ensure throttle is above zero
     if (copter.ap.throttle_zero && (copter.flightmode->mode_number() == Mode::Number::ACRO || copter.flightmode->mode_number() == Mode::Number::STABILIZE)) {
