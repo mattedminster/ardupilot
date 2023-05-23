@@ -1,6 +1,19 @@
 #include "Copter.h"
+#include <utility>
 
 #if MODE_FLIP_ENABLED == ENABLED
+
+
+const AP_Param::GroupInfo ModeFlip::var_info[] = {
+    AP_GROUPINFO("_TRICK_ID", 3, ModeFlip, trick_id, 1),
+
+    AP_GROUPEND
+};
+
+ModeFlip::ModeFlip(void) : Mode()
+{
+    AP_Param::setup_object_defaults(this, var_info);
+}
 
 /*
  * Init and run calls for flip flight mode
@@ -56,7 +69,9 @@ bool ModeFlip::init(bool ignore_checks)
     }
 
     // capture original flight mode so that we can return to it after completion
-    orig_control_mode = copter.flightmode->mode_number();
+    //orig_control_mode = copter.flightmode->mode_number();
+    //alwasy go back to guided
+    orig_control_mode = Mode::Number::GUIDED;
 
     // initialise state
     _state = FlipState::Start;
@@ -64,19 +79,32 @@ bool ModeFlip::init(bool ignore_checks)
 
     roll_dir = pitch_dir = 0;
 
-    // choose direction based on pilot's roll and pitch sticks
-    if (channel_pitch->get_control_in() > 300) {
-        pitch_dir = FLIP_PITCH_BACK;
-    } else if (channel_pitch->get_control_in() < -300) {
-        pitch_dir = FLIP_PITCH_FORWARD;
-    } else if (channel_roll->get_control_in() >= 0) {
+    
+    if (g.trick_id == 1) {
         roll_dir = FLIP_ROLL_RIGHT;
-    } else {
+    } else if (g.trick_id == 2) {
         roll_dir = FLIP_ROLL_LEFT;
+    } else if (g.trick_id == 3) {
+        pitch_dir = FLIP_PITCH_BACK;
+    } else if (g.trick_id == 4) {
+        pitch_dir = FLIP_PITCH_FORWARD;
+    } else {
+        // choose direction based on pilot's roll and pitch sticks
+        if (channel_pitch->get_control_in() > 300) {
+            pitch_dir = FLIP_PITCH_BACK;
+        } else if (channel_pitch->get_control_in() < -300) {
+            pitch_dir = FLIP_PITCH_FORWARD;
+        } else if (channel_roll->get_control_in() >= 0) {
+            roll_dir = FLIP_ROLL_RIGHT;
+        } else {
+            roll_dir = FLIP_ROLL_LEFT;
+        }
     }
 
     // log start of flip
     AP::logger().Write_Event(LogEvent::FLIP_START);
+
+
 
     // capture current attitude which will be used during the FlipState::Recovery stage
     const float angle_max = copter.aparm.angle_max;

@@ -102,6 +102,15 @@ const AP_Param::Info Copter::var_info[] = {
     // @User: Advanced
     // @Values: 0:None,1:Roll,2:Pitch,4:Yaw,8:AccelZ
     // @Bitmask: 0:Roll,1:Pitch,2:Yaw,3:AccelZ
+   
+    GSCALAR(trick_id,           "TRICK_ID",     0),
+    // @Param: TRICK_ID
+    // @DisplayName: TRICK_ID
+    // @Description: The id of the trick to be performed
+    // @User: Advanced
+    // @Values: 0:None,1:Front,2:Back,4:Left,8:Right
+
+
     GSCALAR(gcs_pid_mask,           "GCS_PID_MASK",     0),
 
 #if MODE_RTL_ENABLED == ENABLED

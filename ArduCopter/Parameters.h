@@ -186,9 +186,11 @@ public:
         k_param_rtl_alt_type,
         k_param_avoid,
         k_param_avoidance_adsb,
+        
 
         // 97: RSSI
         k_param_rssi = 97,
+        k_param_trick_id,
                 
         //
         // 100: Inertial Nav
@@ -456,6 +458,7 @@ public:
     AP_Int8         fs_crash_check;
     AP_Float        fs_ekf_thresh;
     AP_Int16        gcs_pid_mask;
+    AP_Int8         trick_id;
 
 #if MODE_THROW_ENABLED == ENABLED
     AP_Enum<ModeThrow::PreThrowMotorState>         throw_motor_start;

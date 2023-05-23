@@ -797,8 +797,8 @@ private:
 class ModeFlip : public Mode {
 
 public:
-    // inherit constructor
-    using Mode::Mode;
+    // need a constructor for parameters
+    ModeFlip(void);
     Number mode_number() const override { return Number::FLIP; }
 
     bool init(bool ignore_checks) override;
@@ -808,7 +808,8 @@ public:
     bool has_manual_throttle() const override { return false; }
     bool allows_arming(AP_Arming::Method method) const override { return false; };
     bool is_autopilot() const override { return false; }
-
+    
+    static const struct AP_Param::GroupInfo var_info[];
 protected:
 
     const char *name() const override { return "FLIP"; }
@@ -832,6 +833,7 @@ private:
     uint32_t  start_time_ms;          // time since flip began
     int8_t    roll_dir;            // roll direction (-1 = roll left, 1 = roll right)
     int8_t    pitch_dir;           // pitch direction (-1 = pitch forward, 1 = pitch back)
+    AP_Int8    trick_id;
 };
 
 
