@@ -51,25 +51,27 @@ class Board:
             AP_SCRIPTING_ENABLED = 0,
         )
 
-        # Setup scripting, had to defer this to allow checking board size
-        if ((not cfg.options.disable_scripting) and
-            (not cfg.env.DISABLE_SCRIPTING) and
-            ((cfg.env.BOARD_FLASH_SIZE is None) or
-             (cfg.env.BOARD_FLASH_SIZE == []) or
-             (cfg.env.BOARD_FLASH_SIZE > 1024))):
+        #brute force enabling scripting
+        # # Setup scripting, had to defer this to allow checking board size
+        # if ((not cfg.options.disable_scripting) and
+        #     (not cfg.env.DISABLE_SCRIPTING) and
+        #     ((cfg.env.BOARD_FLASH_SIZE is None) or
+        #      (cfg.env.BOARD_FLASH_SIZE == []) or
+        #      (cfg.env.BOARD_FLASH_SIZE > 1024))):
 
-            env.DEFINES.update(
-                AP_SCRIPTING_ENABLED = 1,
-                LUA_32BITS = 1,
-                )
+        env.DEFINES.update(
+            AP_SCRIPTING_ENABLED = 1,
+            LUA_32BITS = 1,
+            )
 
-            env.AP_LIBRARIES += [
-                'AP_Scripting',
-                'AP_Scripting/lua/src',
-                ]
-
-        else:
-            cfg.options.disable_scripting = True
+        env.AP_LIBRARIES += [
+            'AP_Scripting',
+            'AP_Scripting/lua/src',
+            ]
+        
+        #brute force enabling scripting
+        # else:
+        #     cfg.options.disable_scripting = True
 
         # allow GCS disable for AP_DAL example
         if cfg.options.no_gcs:
