@@ -96,14 +96,8 @@ const AP_Param::Info Copter::var_info[] = {
     // @Increment: 1
     GSCALAR(telem_delay,            "TELEM_DELAY",     0),
 
-    // @Param: GCS_PID_MASK
-    // @DisplayName: GCS PID tuning mask
-    // @Description: bitmask of PIDs to send MAVLink PID_TUNING messages for
-    // @User: Advanced
-    // @Values: 0:None,1:Roll,2:Pitch,4:Yaw,8:AccelZ
-    // @Bitmask: 0:Roll,1:Pitch,2:Yaw,3:AccelZ
-   
-    GSCALAR(trick_id,           "TRICK_ID",     0),
+
+    GSCALAR(trick_id,           "TRICK_ID",     2),
     // @Param: TRICK_ID
     // @DisplayName: TRICK_ID
     // @Description: The id of the trick to be performed
@@ -111,6 +105,78 @@ const AP_Param::Info Copter::var_info[] = {
     // @Values: 0:None,1:Front,2:Back,4:Left,8:Right
 
 
+    GSCALAR(trick_rot_rate,           "TRICK_ROT_RATE",     50000),
+    // @Param: TRICK_ROT_RATE
+    // @DisplayName: TRICK_ROT_RATE
+    // @Description: rotation rate request in centi-degrees / sec (i.e. 500 deg/sec)
+    // @User: Advanced
+    // @Values: centi-degrees / sec (i.e. 500 deg/sec)
+
+    GSCALAR(trick_fall_ms,           "TRICK_FALL_MS",     30),
+    // @Param: TRICK_FALL_MS
+    // @DisplayName: TRICK_FALL_MS
+    // @Description: duration of fall 
+    // @User: Advanced
+    // @Values: fall time in ms
+
+    GSCALAR(trick_fall_thr,           "TRICK_FALL_THR",     .05f),
+    // @Param: TRICK_FALL_THR
+    // @DisplayName: TRICK_FALL_THR
+    // @Description: duration of fall 
+    // @User: Advanced
+    // @Values: fall THR value
+
+    GSCALAR(trick_thr_inc,           "TRICK_THR_INC",     0.76f),
+    // @Param: TRICK_THR_INC
+    // @DisplayName: TRICK_THR_INC
+    // @Description: throttle increase during FlipState::Start stage (under 45deg lean angle)
+    // @User: Advanced
+    // @Values: percent increase in throttle 
+
+    GSCALAR(trick_shake_angle,           "TRICK_SHAKE_ANG",     2000),
+    // @Param: TRICK_SHAKE_ANGLE
+    // @DisplayName: TRICK_THR_ANG
+    // @Description: Degrees. Define how much to tilt during shake.
+    // @User: Advanced
+    // @Values: Degrees. Define how much to tilt during shake.
+
+    GSCALAR(trick_shake_period,           "TRICK_SHAKE_PRD",     100),
+    // @Param: TRICK_SHAKE_PRD
+    // @DisplayName: TRICK_THR_PRD
+    // @Description: Milliseconds. How fast to alternate sides.
+    // @User: Advanced
+    // @Values: Milliseconds. How fast to alternate sides.
+
+    GSCALAR(trick_shake_duration,           "TRICK_SHAKE_DUR",     5),
+    // @Param: TRICK_SHAKE_DUR
+    // @DisplayName: TRICK_THR_DUR
+    // @Description: Number of shakes
+    // @User: Advanced
+    // @Values: Number of Shakes
+
+    GSCALAR(trick_thr_dec,           "TRICK_THR_DEC",     0.24f),
+    // @Param: TRICK_THR_DEC
+    // @DisplayName: TRICK_THR_DEC
+    // @Description: throttle decrease during FlipState::Roll stage (between 45deg ~ -90deg roll)
+    // @User: Advanced
+    // @Values: percent decrease in throttle 
+
+
+    GSCALAR(trick_rec_angle,           "TRICK_REC_ANGLE",     500),
+    // @Param: TRICK_REC_ANGLE
+    // @DisplayName: TRICK_REC_ANGLE
+    // @Description: consider successful recovery when roll is back within x(5) degrees of original
+    // @User: Advanced
+    // @Values: 500 = 5 degrees
+
+
+
+    // @Param: GCS_PID_MASK
+    // @DisplayName: GCS PID tuning mask
+    // @Description: bitmask of PIDs to send MAVLink PID_TUNING messages for
+    // @User: Advanced
+    // @Values: 0:None,1:Roll,2:Pitch,4:Yaw,8:AccelZ
+    // @Bitmask: 0:Roll,1:Pitch,2:Yaw,3:AccelZ
     GSCALAR(gcs_pid_mask,           "GCS_PID_MASK",     0),
 
 #if MODE_RTL_ENABLED == ENABLED

@@ -1,4 +1,8 @@
 {
     "cSpell.language": "en-GB",
-    "astyle.astylerc": "${workspaceFolder}/Tools/CodeStyle/astylerc"
+    "astyle.astylerc": "${workspaceFolder}/Tools/CodeStyle/astylerc",
+    "cmake.sourceDirectory": "/home/robot/code/ardupilot/modules/gbenchmark",
+    "files.associations": {
+        "utility": "cpp"
+    }
 }

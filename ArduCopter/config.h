@@ -496,7 +496,7 @@
 #endif
 
 #ifndef RTL_ALT
- # define RTL_ALT                   1500    // default alt to return to home in cm, 0 = Maintain current altitude
+ # define RTL_ALT                   400    // default alt to return to home in cm, 0 = Maintain current altitude
 #endif
 
 #ifndef RTL_ALT_MIN
@@ -520,7 +520,7 @@
 #endif
 
 #ifndef RTL_LOITER_TIME
- # define RTL_LOITER_TIME           5000    // Time (in milliseconds) to loiter above home before beginning final descent
+ # define RTL_LOITER_TIME           0    // Time (in milliseconds) to loiter above home before beginning final descent
 #endif
 
 // AUTO Mode

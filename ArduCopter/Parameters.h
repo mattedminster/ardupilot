@@ -191,6 +191,7 @@ public:
         // 97: RSSI
         k_param_rssi = 97,
         k_param_trick_id,
+        k_param_trick_rot_rate,
                 
         //
         // 100: Inertial Nav
@@ -202,6 +203,9 @@ public:
         k_param_circle_nav,
         k_param_loiter_nav,     // 105
         k_param_custom_control,
+        k_param_trick_thr_inc,
+        k_param_trick_thr_dec,
+        k_param_trick_rec_angle,
 
         // 110: Telemetry control
         //
@@ -226,6 +230,11 @@ public:
         k_param_gcs5,
         k_param_gcs6,
 
+        k_param_trick_fall_ms,
+        k_param_trick_fall_thr,
+        k_param_trick_shake_angle, // 132
+        k_param_trick_shake_period, // 133
+
         k_param_collmot = 134,   // hopefully this won't clash with upstream for a while
 
         //
@@ -234,6 +243,7 @@ public:
         k_param_rtl_speed_cms = 135,
         k_param_fs_batt_curr_rtl,
         k_param_rtl_cone_slope, // 137
+        k_param_trick_shake_duration, // 138
 
         //
         // 140: Sensor parameters
@@ -459,6 +469,15 @@ public:
     AP_Float        fs_ekf_thresh;
     AP_Int16        gcs_pid_mask;
     AP_Int8         trick_id;
+    AP_Int32        trick_rot_rate;
+    AP_Float        trick_thr_inc;
+    AP_Float        trick_thr_dec;
+    AP_Int32        trick_rec_angle;
+    AP_Int32        trick_fall_ms;
+    AP_Float        trick_fall_thr;
+    AP_Float        trick_shake_angle;
+    AP_Int32        trick_shake_period;
+    AP_Int32        trick_shake_duration;
 
 #if MODE_THROW_ENABLED == ENABLED
     AP_Enum<ModeThrow::PreThrowMotorState>         throw_motor_start;

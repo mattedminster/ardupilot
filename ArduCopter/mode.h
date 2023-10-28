@@ -826,7 +826,14 @@ private:
         Pitch_A,
         Pitch_B,
         Recover,
-        Abandon
+        Abandon,
+        HitJerkStart,
+        HitJerkRecover,
+        FallAndRecover,
+        RecoverFromFall,
+        VibrateStart,
+        Vibrating,
+        VibrateEnd,
     };
     FlipState _state;               // current state of flip
     Mode::Number   orig_control_mode;   // flight mode when flip was initated
@@ -834,6 +841,16 @@ private:
     int8_t    roll_dir;            // roll direction (-1 = roll left, 1 = roll right)
     int8_t    pitch_dir;           // pitch direction (-1 = pitch forward, 1 = pitch back)
     AP_Int8    trick_id;
+    AP_Int32   trick_rot_rate;
+    AP_Float   trick_thr_inc;
+    AP_Float   trick_thr_dec;
+    AP_Int32   trick_rec_angle;
+    AP_Int32   trick_fall_ms;
+    AP_Float   trick_fall_thr;
+    AP_Float   trick_shake_angle;
+    AP_Int32   trick_shake_period;
+    AP_Int32   trick_shake_duration;
+
 };
 
 
