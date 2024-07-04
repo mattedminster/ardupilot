@@ -76,5 +76,8 @@ bool DroneShowLED_Servo::set_raw_rgbw(uint8_t red, uint8_t green, uint8_t blue, 
 
 static uint16_t get_duty_cycle_for_color(const uint8_t color, const uint16_t usec_period)
 {
-    return usec_period * color / 255;
+    // Map color value to 1000-2000 us range
+    uint16_t min_pulse = 1000; // Minimum pulse width
+    uint16_t max_pulse = 2000; // Maximum pulse width
+    return min_pulse + (max_pulse - min_pulse) * color / 255;
 }

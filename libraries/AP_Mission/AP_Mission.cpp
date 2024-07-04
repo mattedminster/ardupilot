@@ -909,9 +909,9 @@ MAV_MISSION_RESULT AP_Mission::mavlink_int_to_mission_cmd(const mavlink_mission_
         // this is reserved for storing 16 bit command IDs
         return MAV_MISSION_INVALID;
 
-    case MAV_CMD_TRICK:
-        cmd.p1 = packet.param1;
-        break;
+    // case MAV_CMD_TRICK:
+    //     cmd.p1 = packet.param1;
+    //     break;
     case MAV_CMD_NAV_WAYPOINT: {                        // MAV ID: 16
         /*
           the 15 byte limit means we can't fit both delay and radius
@@ -1419,9 +1419,9 @@ bool AP_Mission::mission_cmd_to_mavlink_int(const AP_Mission::Mission_Command& c
         // this is reserved for 16 bit command IDs
         return false;
 
-    case MAV_CMD_TRICK:                          // MAV ID: 15
-        packet.param1 = cmd.p1;
-        break;
+    // case MAV_CMD_TRICK:                          // MAV ID: 15
+    //     packet.param1 = cmd.p1;
+    //     break;
 
     case MAV_CMD_NAV_WAYPOINT:                          // MAV ID: 16
 #if APM_BUILD_TYPE(APM_BUILD_ArduPlane)
